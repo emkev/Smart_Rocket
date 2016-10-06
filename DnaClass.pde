@@ -3,49 +3,52 @@
 
 class DNA
 {
+  // singal for single engine
   // the genetic sequence
-  //PVector[] genes ;
-  // single engine
-  PVector genes ;
+  PVector[] genes ;
+  //PVector genes ;
   
   float maxForce = 0.1 ;
   
   DNA()
   {
+    // singal for single engine
     // lifetime (in MainClass) = How long should each generation live
-    //genes = new PVector[lifetime] ;
-    // single engine
+    genes = new PVector[lifetime] ;
+
+    // singal for single engine
+    /*
     float angle = random(TWO_PI);
     genes = new PVector(cos(angle) , sin(angle)) ;
     genes.mult(random(0 , maxForce)) ;
-
-    // single engine    
+    */
+    
+    // singal for single engine    
     // construct vector array factors ...
-    /*
     for(int i = 0 ; i < genes.length ; i++)
     {
       float angle = random(TWO_PI) ;
       genes[i] = new PVector(cos(angle) , sin(angle)) ;
       genes[i].mult(random(0 , maxForce)) ;
     }
-    */
     
   }
   
-  // single engine
+  // singal for single engine
   // constructor #2
-  /*
   DNA(PVector[] newGenes)
   {
     genes = newGenes ;
   }
-  */
+
+  /*
   DNA(PVector newGenes)
   {
     genes = newGenes ;
   }
+  */
   
-  /* single engine
+  // singal for single engine  
   DNA crossover(DNA partner)
   {
 
@@ -66,9 +69,10 @@ class DNA
     
     return newDna ;
   }
-  */
+
   
-  // single engine
+  // singal for single engine
+  /*
   DNA crossover(DNA partner)
   {
     PVector childgenes = new PVector() ;
@@ -79,10 +83,12 @@ class DNA
     DNA newDna = new DNA(childgenes) ;
     return newDna ;
   }
+  */
   
   void mutate(float m)
   {
-    /* single engine
+    // singal for single engine
+
     for(int i = 0 ; i < genes.length ; i++)
     {
       if(random(1) < m)
@@ -92,7 +98,8 @@ class DNA
         genes[i].mult(random(0 , maxForce));
       }
     }
-    */
+    
+    
   }
  
 }
