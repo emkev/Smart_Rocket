@@ -107,14 +107,14 @@ class Rocket
     // if not arrived ...
     if(!hitTarget)
     {
-      // single engine
+      // singal for single engine
       // !!!! apply the running force !!!!!
-      //applyForce(dna.genes[geneCounter]);
-      applyForce(dna.genes);
+      applyForce(dna.genes[geneCounter]);
+      //applyForce(dna.genes);
       
-      // single engine
+      // singal for single engine
       // loop all forces in a dna genes of a rocket !!! 
-      //geneCounter = (geneCounter + 1) % dna.genes.length ;
+      geneCounter = (geneCounter + 1) % dna.genes.length ;
       
       update();
       
