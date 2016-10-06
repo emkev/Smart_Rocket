@@ -18,7 +18,7 @@ class Population
     for(int i = 0 ; i < population.length ; i++)
     {
       // build Rocket objects with a location and DnaClass .
-      PVector location = new PVector(width / 2 , height / 2) ;
+      PVector location = new PVector(width / 2 , height - 20) ;
       population[i] = new Rocket(location , new DNA()) ;
     }
   }
@@ -87,10 +87,10 @@ class Population
       DNA momDna = mom.getDNA();
       DNA dadDna = dad.getDNA();
       DNA childDna = momDna.crossover(dadDna) ;
-      // single engine
-      //childDna.mutate(mutationRate) ;
+      // singal for single engine
+      childDna.mutate(mutationRate) ;
       
-      PVector location = new PVector(width / 2 , height + 20) ;
+      PVector location = new PVector(width / 2 , height - 20) ;
       population[i] = new Rocket(location , childDna) ;
     }
     
