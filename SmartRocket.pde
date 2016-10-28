@@ -9,6 +9,9 @@ class Rocket
   float r ; // size
   
   float fitness ;
+  // 2016.10.28 , 
+  float fitnessDis ;
+
   DNA dna ;
   
   // To count which force we are on in the genes
@@ -89,6 +92,15 @@ class Rocket
     // fitness = one divided by distance squared
     fitness = pow(1 / d , 2);
   }
+
+  /* 2016.10.28 pm 21:17
+     more logical fitness computing
+   */
+  void fitnessDistance()
+  {
+    float dis = dist(location.x , location.y , target.x , target.y) ;
+    fitnessDis = dis ;    
+  }
   
   void checkTarget()
   {
@@ -107,12 +119,9 @@ class Rocket
     // if not arrived ...
     if(!hitTarget)
     {
-      // singal for single engine
       // !!!! apply the running force !!!!!
       applyForce(dna.genes[geneCounter]);
-      //applyForce(dna.genes);
       
-      // singal for single engine
       // loop all forces in a dna genes of a rocket !!! 
       geneCounter = (geneCounter + 1) % dna.genes.length ;
       
@@ -126,6 +135,12 @@ class Rocket
   float getFitness()
   {
     return fitness ;
+  }
+  
+  // 2016.10.28
+  float getFitnessDis()
+  {
+    return fitnessDis ;
   }
   
   DNA getDNA()
