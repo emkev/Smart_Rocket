@@ -40,6 +40,31 @@ class Population
     }
   }
   
+  /* 2016.10.28 , start */
+  void fitnessDis()
+  { 
+    for(int i = 0 ; i < population.length ; i++)
+    {
+      population[i].fitnessDistance() ;
+    }
+  }
+  
+  float fitnessDisAve()
+  {
+    float fitDisSum = 0.0 ;
+   
+    fitnessDis();
+    
+    for(int i = 0 ; i < population.length ; i++)
+    {
+      fitDisSum += population[i].getFitnessDis() ;
+    }
+    
+    return fitDisSum / population.length ;
+  }
+  /* 2016.10.28 , end */
+  
+  
   // find highest fitness in whole population
   float getMaxFitness()
   {
@@ -87,7 +112,7 @@ class Population
       DNA momDna = mom.getDNA();
       DNA dadDna = dad.getDNA();
       DNA childDna = momDna.crossover(dadDna) ;
-      // singal for single engine
+
       childDna.mutate(mutationRate) ;
       
       PVector location = new PVector(width / 2 , height - 20) ;
@@ -102,6 +127,5 @@ class Population
   {
     return generations ;
   }
-
   
 }
