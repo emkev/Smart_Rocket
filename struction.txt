@@ -1,0 +1,49 @@
+
+class DNA :
+  genes[ Vector .. ]       作为 rocket 推进力的向量数组 
+  Crossover( ) 
+  mutate( )
+
+
+class Rocket :
+
+  location , velocity , acceleration                                                          物理运动相关
+  applyForce( ) , update( ) , checkEdge( ) , display( ) ,
+
+  fitness       该 rocket 的适应度
+  compute this rocket fitness ( ) ,    《和目标距离》倒数的平方
+
+  DNA                       作为推进力的向量数组对象
+
+  run ( ) : 
+    从 rocket自己的 genes 向量数组中选择 ， 作为推进力来应用到 rocket 上 。
+    applyForce( DNA . genes [ geneCounter ] ) ; 
+    
+    geneCounter = ( geneCounter + 1 ) % DNA . genes.length ;       genes 数组向量轮换 。
+
+    update( ) , checkEdge( ) , display( )      运动和显示
+
+
+class population :
+
+  Rocket [ ]  population     火箭集合
+  ArrayList<Rocket>  matingPool     繁殖池
+
+  live( ) :                         依次每个 rocket 的运行
+    rocket -- i . run ( )
+
+  fitness( ) :                    依次计算 每个 rocket 的适应度
+    rocket — i . compute this rocket fitness ( )  
+
+  selection( ) : build the mating pool by every fitness 
+
+  reproduction( ) :
+    DNA . crossover ( )          从繁殖池中选出两个 rocket 交叉 genes 数组 -> new DNA sequence
+    DNA . mutate ( )              new DNA sequence 突变
+
+ 
+main ( ) 
+
+  draw ( ) 运行 liveCounter 次 population.live( ) ， 直到 lifetime ， 后 ， fitness , selection , reproduction  
+
+
