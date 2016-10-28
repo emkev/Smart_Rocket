@@ -31,23 +31,20 @@ void draw()
   {
     population.live() ;
     lifeCounter++ ;
-    //println("lifeCunter = " + lifeCounter);
   }
   else
   {
-    println("production start");
     println("Generations : " + population.getGenerations());
+
     lifeCounter = 0 ;
     population.fitness() ;
     population.selection() ;
-    println("Max fitness rate : " + population.getMaxFitness() * 100 + " %");
+    println("ave distance : " + population.fitnessDisAve());
+    //println("Max fitness rate : " + population.getMaxFitness() * 100 + " %");
+
     population.reproduction() ;
+
   }
   
 
 }
-
-
-
-
-
