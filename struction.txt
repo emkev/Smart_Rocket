@@ -7,7 +7,7 @@ class DNA :
 
 class Rocket :
 
-  location , velocity , acceleration                                                          物理运动相关
+  location , velocity , acceleration                       物理运动相关
   applyForce( ) , update( ) , checkEdge( ) , display( ) ,
 
   fitness       该 rocket 的适应度
