@@ -23,14 +23,24 @@ class Population
     }
   }
   
-  void live()
+  void live(ArrayList<Obstacle> obstacles)
   {
     // run every Rocket
     for(int i = 0 ; i < population.length ; i++)
     {
-      population[i].run();
+      population[i].run(obstacles);
     }
   }
+  
+  /*
+  boolean targetReached() {
+    for(int i = 0 ; i < population.length ; i++) {
+      if(population[i].hitTarget)
+        return true ;
+    }
+    return false ;
+  }
+  */
   
   void fitness()
   {
