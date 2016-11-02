@@ -6,6 +6,8 @@ int lifeCounter ;
 PVector target ;
 Population population ;
 
+ArrayList<Obstacle> obstacles ;
+
 void setup()
 {
     size(640 , 360);
@@ -14,9 +16,11 @@ void setup()
     lifeCounter = 0 ;
     target = new PVector(width / 2 , 24);
     
-    float mutationRate = 0.01 ;
+    float mutationRate = 0.1 ;
     population = new Population(mutationRate , 50);
     
+    obstacles = new ArrayList<Obstacle>() ;
+    obstacles.add(new Obstacle(width/2-100 , height/2 , 200 , 10));
 }
 
 
@@ -29,7 +33,7 @@ void draw()
   
   if(lifeCounter < lifetime)
   {
-    population.live() ;
+    population.live(obstacles) ;
     lifeCounter++ ;
   }
   else
@@ -46,5 +50,7 @@ void draw()
 
   }
   
-
+  for(Obstacle ob : obstacles) {
+    ob.display();
+  }
 }
