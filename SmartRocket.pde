@@ -19,6 +19,8 @@ class Rocket
   // Did I reach the target .
   boolean hitTarget = false ;
   
+  boolean hitObstacle = false ;
+  
   Rocket(PVector l , DNA dna_)
   {
     location = l.get();
@@ -91,6 +93,12 @@ class Rocket
     float d = dist(location.x , location.y , target.x , target.y);
     // fitness = one divided by distance squared
     fitness = pow(1 / d , 2);
+    
+    /* more active fitness-rate  */
+    if(hitObstacle)
+      fitness *= 0.1 ;
+    if(hitTarget)
+      fitness *= 2 ;
   }
 
   /* 2016.10.28 pm 21:17
@@ -112,12 +120,21 @@ class Rocket
     }
   }
   
-  void run()
+  /* hit-obsracles judgement  */
+  void judgeHitObstacle(ArrayList<Obstacle> obstacles) {
+    for(Obstacle ob : obstacles) {
+      if(ob.contains(location)) {
+        hitObstacle = true ;
+      }
+    }
+  }
+  
+  void run(ArrayList<Obstacle> obstacles)
   {
     checkTarget();
     
     // if not arrived ...
-    if(!hitTarget)
+    if(!hitObstacle && !hitTarget)
     {
       // !!!! apply the running force !!!!!
       applyForce(dna.genes[geneCounter]);
@@ -127,8 +144,12 @@ class Rocket
       
       update();
       
+      /* involve the hit-obstacles judgement  */
+      judgeHitObstacle(obstacles);
     }
+    
     checkedge();
+    
     display();
   }
   
@@ -148,4 +169,10 @@ class Rocket
     return dna ;
   }
  
+  /*
+  boolean stopped() {
+    return hitObstacle ;
+  }
+  */
+  
 }
