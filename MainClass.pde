@@ -12,7 +12,7 @@ void setup()
 {
     size(640 , 360);
     
-    lifetime = 1080 ;
+    lifetime = 3240 ;
     lifeCounter = 0 ;
     target = new PVector(width / 2 , 24);
     
@@ -20,7 +20,11 @@ void setup()
     population = new Population(mutationRate , 50);
     
     obstacles = new ArrayList<Obstacle>() ;
-    obstacles.add(new Obstacle(width/2-100 , height/2 , 200 , 10));
+    for(int i = 0 ; i < 4 ; i++)
+    {
+      obstacles.add(new Obstacle(random(0 , width - 50) , 
+                                 random(0 , height - 10) , 50 , 10));
+    }
 }
 
 
