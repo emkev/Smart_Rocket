@@ -1,5 +1,8 @@
 
-/* 2016.09.26 */
+/* 2016.09.26 
+   2017.06.19 , reassign code-blocks 
+
+*/
 
 class Population
 {
@@ -22,7 +25,10 @@ class Population
       population[i] = new Rocket(location , new DNA()) ;
     }
   }
-  
+
+
+  /************** global-running component , start **********/
+
   void live(ArrayList<Obstacle> obstacles)
   {
     // run every Rocket
@@ -31,6 +37,9 @@ class Population
       population[i].run(obstacles);
     }
   }
+
+  /************** global-running component , end **********/
+  
   
   /*
   boolean targetReached() {
@@ -41,6 +50,9 @@ class Population
     return false ;
   }
   */
+  
+
+  /************** fitness component , start **********/
   
   void fitness()
   {
@@ -89,7 +101,11 @@ class Population
     return record ;
   }
   
-  
+  /************** fitness component , end **********/
+
+
+  /************** Reproduction component , start **********/
+
   void selection()
   {
     matingPool.clear();
@@ -131,6 +147,9 @@ class Population
     
     generations++ ;
   }
+
+
+  /************** Reproduction component , end **********/
   
   
   int getGenerations()
