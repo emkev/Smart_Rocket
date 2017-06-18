@@ -1,5 +1,8 @@
 
-/* 2016.09.26  */
+/*  base on Daniel Shiffman 's code
+    2016.09.26  
+    2017.06.19 , reassign code-blocks 
+*/
 
 class Rocket
 {
@@ -30,6 +33,9 @@ class Rocket
     dna = dna_ ;
   }
   
+
+  /************** moving component , start  **********/
+
   void applyForce(PVector f)
   {
     acceleration.add(f);
@@ -83,6 +89,53 @@ class Rocket
     popMatrix();
   }  
 
+  void checkTarget()
+  {
+    float d = dist(location.x , location.y , target.x , target.y);
+    if(d < 12)
+    {
+      // whether has arrived .
+      hitTarget = true ;
+    }
+  }
+  
+  /* hit-obsracles judgement  */
+  void judgeHitObstacle(ArrayList<Obstacle> obstacles) {
+    for(Obstacle ob : obstacles) {
+      if(ob.contains(location)) {
+        hitObstacle = true ;
+      }
+    }
+  }
+
+  void run(ArrayList<Obstacle> obstacles)
+  {
+    checkTarget();
+    
+    // if not arrived ...
+    if(!hitObstacle && !hitTarget)
+    {
+      // !!!! apply the running force !!!!!
+      applyForce(dna.genes[geneCounter]);
+      
+      // loop all forces in a dna genes of a rocket !!! 
+      geneCounter = (geneCounter + 1) % dna.genes.length ;
+      
+      update();
+      
+      /* involve the hit-obstacles judgement  */
+      judgeHitObstacle(obstacles);
+    }
+    
+    checkedge();
+    
+    display();
+  }
+
+  /************** moving component , end  **********/
+
+
+  /************** fitness component , start **********/
 
   void fitness()
   {
@@ -110,48 +163,6 @@ class Rocket
     fitnessDis = dis ;    
   }
   
-  void checkTarget()
-  {
-    float d = dist(location.x , location.y , target.x , target.y);
-    if(d < 12)
-    {
-      // whether has arrived .
-      hitTarget = true ;
-    }
-  }
-  
-  /* hit-obsracles judgement  */
-  void judgeHitObstacle(ArrayList<Obstacle> obstacles) {
-    for(Obstacle ob : obstacles) {
-      if(ob.contains(location)) {
-        hitObstacle = true ;
-      }
-    }
-  }
-  
-  void run(ArrayList<Obstacle> obstacles)
-  {
-    checkTarget();
-    
-    // if not arrived ...
-    if(!hitObstacle && !hitTarget)
-    {
-      // !!!! apply the running force !!!!!
-      applyForce(dna.genes[geneCounter]);
-      
-      // loop all forces in a dna genes of a rocket !!! 
-      geneCounter = (geneCounter + 1) % dna.genes.length ;
-      
-      update();
-      
-      /* involve the hit-obstacles judgement  */
-      judgeHitObstacle(obstacles);
-    }
-    
-    checkedge();
-    
-    display();
-  }
   
   float getFitness()
   {
@@ -163,6 +174,9 @@ class Rocket
   {
     return fitnessDis ;
   }
+  
+  /************** fitness component , end **********/
+  
   
   DNA getDNA()
   {
