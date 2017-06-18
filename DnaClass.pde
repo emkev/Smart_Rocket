@@ -1,5 +1,7 @@
 
-/* 2016.09.26 */
+/* 2016.09.26 
+   2017.06.19 , reassign code-blocks 
+*/
 
 class DNA
 {
@@ -7,6 +9,8 @@ class DNA
   PVector[] genes ;
   
   float maxForce = 0.1 ;
+
+  /************** DNA-building component , start **********/
   
   DNA()
   {
@@ -28,7 +32,11 @@ class DNA
   {
     genes = newGenes ;
   }
+
+  /************** DNA-building component , end **********/
+
   
+  /************** reproduction component , start **********/
 
   DNA crossover(DNA partner)
   {
@@ -63,7 +71,9 @@ class DNA
       }
     }
     
-    
   }
- 
+  
+  /************** reproduction component , end **********/
+  
+
 }
