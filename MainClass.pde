@@ -1,5 +1,7 @@
 
-/* 2016.09.26 */
+/* base on Daniel Shiffman 's code
+   2016.09.26 
+*/
 
 int lifetime ; // How long should each generation live
 int lifeCounter ;
